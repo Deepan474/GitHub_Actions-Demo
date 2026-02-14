@@ -7,8 +7,7 @@ on:
 env:
   MONGODB_DB_NAME: gha-demo
 jobs:
-  test:
-    environment: Test
+  testing:
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.b3d3bib.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
@@ -33,7 +32,7 @@ jobs:
         run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
   deploy:
-    needs: test
+    needs: testing
     runs-on: ubuntu-latest
     steps:
       - name: Output information
